@@ -1,0 +1,12 @@
+models:
+  - type: main
+    engine: openai
+    model: gpt-3.5-turbo
+
+rails:
+  input:
+    flows:
+      - dummy input rail
+      # ... other input rails can go in here
+      - allow input
+

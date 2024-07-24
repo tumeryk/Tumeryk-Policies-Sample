@@ -1,0 +1,38 @@
+define bot allow
+  "You are allowed to use this message"
+
+define bot deny
+  "You have used a denied keyword"
+
+define subflow dummy input rail
+  """A dummy input rail which checks if the word "dummy" is included in the text."""
+  if "dummy" in $user_message
+    bot deny
+    stop
+
+define subflow allow input
+  bot allow
+  stop
+
+define user input
+  "..."
+
+define flow
+  user input
+  bot $llm_output
+
+define bot allow
+  "You are allowed to use this message"
+
+define bot deny
+  "You have used a denied keyword"
+
+define subflow dummy output rail
+  """A dummy input rail which checks if the word "dummy" is included in the text."""
+  if "dummy" in $bot_message
+    bot deny
+    stop
+
+define subflow allow output
+  bot allow
+  stop
