@@ -1,6 +1,10 @@
+![Tumeryk AI Policy Catalog Logo](assets/icons/Tumeryk-logo-white-png.png)
+
 # Tumeryk AI Policy Catalog
 
 Welcome to the Tumeryk AI Policy Catalog! This repository serves as a comprehensive collection of configured and tested AI policies that you can directly integrate and test within the Tumeryk Security Studio.
+
+For additional policies and configurations, visit our resource hub at [Nemo Guardrails](https://nemoguardrails.ai). Explore a wide range of advanced security policies and tools tailored to meet your enterprise's unique needs.
 
 ## Overview
 
