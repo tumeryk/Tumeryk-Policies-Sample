@@ -1,0 +1,32 @@
+# Define bot messages
+define bot detect bias input
+  "Tumeryk Violation: Bias Detected in Input, $result"
+
+define bot detect bias output
+  "Tumeryk Violation: Bias Detected in Output, , $result"
+
+# Define the bias check input flow
+define flow check bias input 
+  $result = execute check_bias($user_message)
+  execute record_input_bias_score($result)
+
+#  Stop if input prompt is biased
+#  $bias_score = $result.score
+#  if $bias_score < 0.5
+#  bot detect bias input
+#  stop
+
+  if not $result.allowed
+    bot detect bias input
+    execute record_bias_detection
+    stop
+
+# Define the bias check output flow
+define flow check bias output
+  $result = execute check_bias($bot_message)
+  execute record_output_bias_score($result)
+
+  if not $result.allowed
+    bot detect bias output
+    execute record_bias_detection
+    stop

@@ -1,0 +1,28 @@
+rails:
+  input:
+    flows:
+      - check bias input
+      
+  output:
+    flows:
+      - check bias output
+  
+  dialog:
+    single_call:
+      enabled: True
+
+  config:
+    jailbreak_detection:
+      #You should have your own instance running for jailbeak and safety
+      server_endpoint: "https://jailbreak.tmryk.com/heuristics"
+      lp_threshold: 89.79
+      ps_ppl_threshold: 1845.65
+
+    safety_check:
+      server_endpoint: "http://moderation.tmryk.com:8020/safety-check"
+    spell_check:
+      server_endpoint: "http://moderation.tmryk.com:8004/spell-check"
+    bias_check:
+      server_endpoint: "http://moderation.tmryk.com:8004/bias-check"
+
+  
