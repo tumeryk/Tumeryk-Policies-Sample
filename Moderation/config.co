@@ -1,0 +1,29 @@
+# Define bot messages
+define bot detect moderation input
+  "Tumeryk Violation: Toxicity Detected in Input"
+
+define bot detect moderation output
+  "Tumeryk Violation: Toxicity Detected in Output"
+
+
+define flow aegis guard check output
+  $llama_guard_response = execute aegis_guard_check($bot_message)
+  $allowed = $llama_guard_response["allowed"]
+  $policy_violations = $llama_guard_response["policy_violations"]
+  
+  execute record_guard_allowed($allowed, "output")  
+  if not $allowed
+    execute record_guard_policy_violations($policy_violations, "output")
+    bot detect moderation output
+    stop
+
+define flow aegis guard check input
+  $llama_guard_response = execute aegis_guard_check($user_message)
+  $allowed = $llama_guard_response["allowed"]
+  $policy_violations = $llama_guard_response["policy_violations"]
+  
+  execute record_guard_allowed($allowed, "input")  
+  if not $allowed
+    execute record_guard_policy_violations($policy_violations, "input")
+    bot detect moderation input
+    stop
