@@ -1,0 +1,20 @@
+# Please update this policy from the "Add/Update" policy section.
+# You can select a model and engine you would like to use and please add your API key for the engine you select.
+# Also you can click on "Jailbreak Detection" checkbox and activate the Jailbreak detection capabilities
+#
+# ## Warning:
+# Please back up the current configuration file in order to prevent data loss when you update the policy.
+
+rails:
+  input:
+    flows:
+      - jailbreak detection heuristics
+      
+  dialog:
+    single_call:
+      enabled: True
+  
+  config:
+    jailbreak_detection:
+      #You should have your own instance running for jailbreak
+      server_endpoint: "https://jailbreak.tmryk.com/heuristics"
