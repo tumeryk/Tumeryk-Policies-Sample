@@ -10,7 +10,7 @@ For additional policies and configurations, visit our resource hub at [Nemo Guar
 
 The Tumeryk AI Policy Catalog provides users with access to a variety of AI policies designed to enhance your security measures. These policies have been thoroughly configured and tested to ensure optimal performance and reliability. By leveraging these policies, you can streamline your security operations and ensure your systems are safeguarded against potential threats.
 
-## Features
+## Features 
 
 - **Pre-configured Policies**: Access a wide range of pre-configured AI policies tailored to various security needs.
 - **Tested for Reliability**: Each policy in this catalog has undergone rigorous testing to ensure it meets the highest standards of reliability and effectiveness.
@@ -32,8 +32,8 @@ To get started with the Tumeryk AI Policy Catalog, follow these steps:
 3. **Integrate with Tumeryk Security Studio**:
     - Open Tumeryk Security Studio.
     - Navigate to the AI Policies section.
-    - Import the desired policy from the cloned repository.
-    - Configure the policy as needed and begin testing.
+    - Import desired policy .zip file from the cloned repository.
+    - Configure the policy as needed(Update LLM and Key) and begin testing.
 
     
 ## Contributing
