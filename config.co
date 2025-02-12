@@ -1,0 +1,48 @@
+# Define bot messages
+define bot detect bias input
+  "Tumeryk Violation: Bias Detected in Input"
+
+define bot detect bias output
+  "Tumeryk Violation: Bias Detected in Output"
+
+# Define the bias check input flow
+define flow check bias input 
+  $result = execute check_bias($user_message)
+  execute record_input_bias_score($result)
+
+  #recording violation for bias detection
+  if not $result.allowed
+
+    execute record_bias_detection
+
+
+define flow spell check
+  $user_message = execute spell_check($user_message)
+
+# Define the bias check output flow
+define flow check bias output
+  $result = execute check_bias($bot_message)
+  execute record_output_bias_score($result)
+
+  #recording violation for bias detection
+  if not $result.allowed
+    execute record_bias_detection
+
+
+define flow aegis guard check output
+  $llama_guard_response = execute aegis_guard_check($bot_message)
+  $allowed = $llama_guard_response["allowed"]
+  $policy_violations = $llama_guard_response["policy_violations"]
+  
+  execute record_guard_allowed($allowed, "output")  
+  if not $allowed
+    execute record_guard_policy_violations($policy_violations, "output")
+
+define flow aegis guard check input
+  $llama_guard_response = execute aegis_guard_check($user_message)
+  $allowed = $llama_guard_response["allowed"]
+  $policy_violations = $llama_guard_response["policy_violations"]
+  
+  execute record_guard_allowed($allowed, "input")  
+  if not $allowed
+    execute record_guard_policy_violations($policy_violations, "input")
