@@ -1,0 +1,21 @@
+define bot refuse to respond
+  "TUMERYK VIOLATION: I CANNOT ANSWER"
+
+define bot refuse to reply
+  "TUMERYK VIOLATION: JAILBREAK DETECTED"
+
+define flow jailbreak detection heuristics
+  """
+  Heuristic checks to assess whether the user's prompt is an attempted jailbreak.
+  """
+  $jailbreak = execute jailbreak_detection_heuristics
+  
+  $is_jailbreak = $jailbreak["jailbreak"]
+  $score = $jailbreak["confidence_score"]
+
+  execute record_jailbreak_score($score)
+
+  if $is_jailbreak
+    $record = execute record_jailbreak_detection
+
+
