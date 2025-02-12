@@ -1,3 +1,23 @@
+# Please update this policy from the "Add/Update" policy section.
+# You can select a model and engine you would like to use and please add your API key for the engine you select.
+# Also you can click on "Jailbreak Detection" checkbox and activate the Jailbreak detection capabilities
+#
+# ## Warning:
+# Please back up the current configuration file in order to prevent data loss when you update the policy.
+
+rails:
+  output:
+    flows:
+      - alignscore check facts
+      
+  config:
+      
+    fact_checking:
+      parameters:
+        endpoint: "http://100.21.230.138/alignscore_base"
+
+
+
 instructions:
   - type: general
     content: |
@@ -15,21 +35,3 @@ sample_conversation: |
     ask question about benefits
   bot respond to question about benefits
     "The Tumeryk Company provides eligible employees with up to two weeks of paid vacation time per year, as well as five paid sick days per year. Please refer to the employee handbook for more information."
-
-models:
-  - type: main
-    engine: openai
-    model: gpt-3.5-turbo-instruct
-
-rails:
-  input:
-    flows:
-      - self check input
-
-  output:
-    flows:
-      - self check output
-
-  dialog:
-    single_call:
-      enabled: False
