@@ -1,0 +1,12 @@
+define flow alignscore check facts
+  """Check if the previous answer is accurate w.r.t. the relevant chunks.
+  This output rail must be enabled explicitly per output message by setting
+  the $check_facts context variable to True.
+  """
+  $answer = execute rag()
+
+  $accuracy = execute alignscore_check_facts
+  execute record_alignscore($accuracy)
+  if $accuracy < 0.5
+      $record = execute record_violation
+
