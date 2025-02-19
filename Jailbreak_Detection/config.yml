@@ -17,4 +17,4 @@ rails:
   config:
     jailbreak_detection:
       #You should have your own instance running for jailbreak
-      server_endpoint: "https://jailbreak.tmryk.com/heuristics"
+      server_endpoint: "http://jailbreak.tmryk.com/heuristics"
